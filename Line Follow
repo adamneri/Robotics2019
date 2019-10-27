@@ -1,0 +1,65 @@
+#include <kipr/botball.h>
+int l_motor = 3;
+int r_motor = 0;
+int tophat=2;
+int speed = 10;
+int fsense=0;
+int rsense=5;
+int pause = 1500;
+int blackline = 2800;
+
+int main()
+{
+    findline();
+    followline();
+    
+    return 0;
+}
+
+void forward(){
+    motor(l_motor,speed); //go forward
+        motor(r_motor,speed);
+}
+
+void leftturn() {
+    motor(r_motor, 0); //left turn
+    msleep(pause);
+    ao();
+} 
+
+void veerleft(){
+    printf("VEER LEFT\n");
+    motor(l_motor,0);
+    motor(r_motor,70);
+}
+
+void veerright(){
+    printf("VEER RIGHT\n");
+    motor(l_motor,70);
+    motor(r_motor,0);
+
+}
+
+void findline(){
+printf("FINDING LINE\n");
+while(analog(tophat) < blackline) {
+    	forward();
+    	ao();
+  } 
+}
+    
+void followline() {
+     printf("FOLLOWING LINE\n");
+     while(analog(fsense)<2700) {
+         
+     if(analog(tophat)>blackline) {
+     veerleft();
+     }
+         
+     if(analog(tophat)<blackline) {
+     veerright();
+     }
+     
+  }
+    ao();
+}
