@@ -1,0 +1,59 @@
+#include <kipr/botball.h>
+int l_motor = 3;
+int r_motor = 0;
+int speed = 60;
+int fsense=0;
+int rsense=5;
+int pause = 1500;
+
+int main()
+{
+    
+        followwall();
+        leftturn();
+        followwall();
+        printf("TURN RIGHT\n");
+        return 0;
+    
+}
+
+
+
+void forward(){
+    motor(l_motor,speed); //go forward
+    motor(r_motor,speed);
+}
+
+void leftturn() {
+    motor(r_motor, 200); //left turn
+    msleep(pause);
+    ao();
+} 
+
+void veerleft(){
+   motor(l_motor,35);
+   motor(r_motor,65);
+}
+
+void veerright(){
+  motor(l_motor,65);
+  motor(r_motor,35);
+
+}
+
+void followwall(){
+while(analog(fsense)<1500) {
+        
+        
+        if (analog(rsense)<2500) {
+        veerright();
+        printf("VEER RIGHT\n");
+        }
+        
+        if (analog(rsense)>2500) {
+        veerleft();
+        printf("VEER LEFT\n");
+    }
+  }
+    	ao();
+}
