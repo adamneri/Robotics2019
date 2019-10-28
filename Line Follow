@@ -2,7 +2,7 @@
 int l_motor = 3;
 int r_motor = 0;
 int tophat=2;
-int raise_servo = 0;
+int servo = 0;
 int speed = 10;
 int fsense=0;
 int rsense=5;
