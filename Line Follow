@@ -2,6 +2,7 @@
 int l_motor = 3;
 int r_motor = 0;
 int tophat=2;
+int raise_servo = 0;
 int speed = 10;
 int fsense=0;
 int rsense=5;
@@ -12,6 +13,11 @@ int main()
 {
     findline();
     followline();
+    enable_servos();
+    set_servo_position(0,500);
+    msleep(pause);
+    set_servo_position(0,2000);
+    msleep(pause);
     
     return 0;
 }
@@ -58,8 +64,8 @@ void followline() {
          
      if(analog(tophat)<blackline) {
      veerright();
-     }
-     
+     }   
   }
     ao();
 }
+
