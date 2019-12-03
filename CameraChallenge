@@ -1,0 +1,29 @@
+int main()
+{
+    
+int green = 2;
+int blue = 1;
+int orange = 0;
+    camera_open();
+	
+    while(1) {
+    camera_update(); 
+        
+    if(get_object_count(blue) > 0){
+    printf("I see Blue\n");      
+    }
+        
+    if(get_object_count(orange) > 0){
+    printf("I see Orange\n");      
+    }
+        
+    if(get_object_count(green) > 0){
+    printf("I see Green\n");      
+    }
+        
+    if(get_object_count(green)<=0 && get_object_count(blue)<=0 && get_object_count(orange) <=0){
+    printf("I see nothing\n");
+    }
+                
+  }
+}
