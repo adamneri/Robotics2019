@@ -1,0 +1,29 @@
+int l_motor = 0;
+int r_motor = 2;
+int right_top = 6;
+int left_touch = 8;
+int right_touch = 9;
+
+int main()
+{
+	while(1){
+        //what i want to loop
+        motor(l_motor,100);
+		motor(r_motor,100);
+        //look for a collision event
+        	if(digital(9)){//if a collision is detected...
+		ao();
+		printf("All Off\n");
+		break;
+        	 
+			} 
+        
+    }
+	motor(l_motor,50);// align with wall
+	motor(r_motor,-30);
+		msleep(640);
+		printf("Left Motor\n");
+		printf("Msleep\n");
+	printf("Hello, World!\n");
+	return 0;
+}
