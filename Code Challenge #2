@@ -1,0 +1,35 @@
+int l_motor = 0;
+int r_motor = 2;
+int left_touch = 8;
+int speed = 80;
+int reverse_speed = -100;
+int pause = 650;
+
+int main()
+{
+	motor(l_motor,speed); //adjustment turn to straight
+	motor(r_motor, 60);
+	msleep(2250);
+	
+	while(digital(left_touch != 1)) { //while left sensor does not detect wall, drive forward
+	motor(l_motor,speed);
+	motor(r_motor, speed);
+	
+	if(digital(left_touch)){//if a collision is detected...
+	printf("Collision\n");
+    ao();
+	msleep(pause);
+    printf("All Off\n");
+	motor(l_motor,reverse_speed); //back up
+	motor(r_motor, reverse_speed);
+    msleep(150);
+	motor(l_motor,-60); //turn left towards black line
+	motor(r_motor, speed);
+	msleep(pause);
+    break;
+		
+    }	
+}
+   printf("Hello, World!\n");  
+   return 0;
+   }
