@@ -4,7 +4,7 @@ int left_touch = 8;
 int speed = 80;
 int reverse_speed = -100;
 int pause = 650;
-int blackline = 200; 
+int blackline = 200; //200
 int tophat = 5;
 
 int main()
@@ -32,9 +32,9 @@ int main()
 		
     }	
 	
-}
+   }
    printf("FINDING LINE\n");
-   while(analog(tophat < 200)) {
+   while(analog(tophat) < 200) {
     	motor(l_motor,speed);
 	    motor(r_motor, speed);
     	
@@ -42,20 +42,23 @@ int main()
    printf("FOLLOWING LINE\n");
      while(digital(left_touch != 1 )) {
       
-	 	 
+	 if(analog(tophat)<blackline) {
+     motor(l_motor, 40);
+     printf("VEER RIGHT\n");
+     }	
+
      if(analog(tophat)>blackline) {
-	 motor(r_motor, 50);
+	 motor(r_motor, 40);
      printf("VEER LEFT\n");
      
      }
      
-     	 
-     if(analog(tophat)<blackline) {
-     motor(l_motor, 50);
-     printf("VEER RIGHT\n");
-     }   
+	 if(digital(left_touch)){//if a collision is detected...
+	printf("Collision\n");
+    break;
+	 }
   }
-    ao();
+   
    printf("Hello, World!\n");  
    return 0;
    }
