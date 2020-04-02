@@ -9,35 +9,22 @@ int fsense = 1;
 
 int main()
 {
-    followwall();
+   printf("FOLLOWING WALL\n");
+     while(analog(fsense)<175) {
+      
+	 motor(l_motor, 100);
+	 motor(r_motor, 50);
+		 
+	 if(analog(r_sensor)<277) {
+     motor(l_motor, 60);
+     printf("VEER RIGHT\n");
+     }	
+
+     if(analog(r_sensor)>277) {
+	 motor(r_motor, 60);
+     printf("VEER LEFT\n");
+     }
+ } 
 	printf("Hello, World!\n");
 	return 0;
-}
-
-void followwall(){
-while(analog(fsense)<175) {
-        
-        
-        if (analog(r_sensor)<277) {
-        veerright();
-        printf("VEER RIGHT\n");
-        }
-        
-        if (analog(r_sensor)>277) {
-        veerleft();
-        printf("VEER LEFT\n");
-    }
-  }
-    	ao();
-}
-
-void veerleft(){
-   motor(l_motor,35);
-   motor(r_motor,65);
-}
-
-void veerright(){
-  motor(l_motor,65);
-  motor(r_motor,35);
-
 }
