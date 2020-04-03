@@ -6,22 +6,29 @@ int speed = 80;
 int r_sensor = 2;
 int left_touch = 8;
 int fsense = 1;
+int pause = 1500;
 
 int main()
 {
+   printf("FORWARD\n");
+   motor(l_motor, 80);
+   motor(r_motor, 50);
+   msleep(pause);
+	
    printf("FOLLOWING WALL\n");
-     while(analog(fsense)<175) {
+   printf("fsense=%d\n",analog(fsense));
+     while(1) {
       
-	 motor(l_motor, 100);
-	 motor(r_motor, 50);
-		 
-	 if(analog(r_sensor)<277) {
-     motor(l_motor, 60);
+
+	 if(analog(r_sensor)>350) { //if right sensor value is greater than 350, veer right
+     motor(l_motor, 100);
+	 motor(r_motor, 0);
      printf("VEER RIGHT\n");
      }	
 
-     if(analog(r_sensor)>277) {
-	 motor(r_motor, 60);
+     if(analog(r_sensor)<350) { //if right sensor value is less than 350, veer left
+	 motor(r_motor, 100);
+	 motor(l_motor, 0);
      printf("VEER LEFT\n");
      }
  } 
