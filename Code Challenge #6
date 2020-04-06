@@ -1,0 +1,21 @@
+int l_motor = 0;
+int r_motor = 2;
+int pause = 1000;
+
+int main()
+{
+	int routine;
+	
+	for(routine=0; routine<=6; routine++){
+		printf("Routine is %d\n", routine);	
+		motor(l_motor, 100);
+    motor(r_motor, 100);
+		msleep(pause);
+    
+		motor(l_motor, -100);
+    motor(r_motor, -100);
+		msleep(pause);
+	}
+	
+	return 0;
+}
